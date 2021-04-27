@@ -3,7 +3,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import {persudoTty, ttyConfig} from './subprocess/persudoTty';
-
+import {topView} from './view-engine/top-view';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 const ttyCfg : ttyConfig = {
@@ -36,6 +36,12 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Start child process successfully!');
 	})
 	context.subscriptions.push(startChildProcess);
+
+	let startWebView = vscode.commands.registerCommand('webview-demo.startWebview', () => {
+		const view_demo : topView = new topView(context);
+		view_demo.createMainView();
+	})
+	context.subscriptions.push(startWebView);
 }
 
 // this method is called when your extension is deactivated

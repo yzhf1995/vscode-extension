@@ -23,7 +23,7 @@ export class persudoTty {
         this.m_tty = null;
         this.m_para = para;
         this.m_name = name;
-        this.m_proc_handle = <cp.ChildProcessWithoutNullStreams> null;
+        this.m_proc_handle = <cp.ChildProcessWithoutNullStreams>{};
         this.m_write_emit = new vscode.EventEmitter<string>();
         this.m_colse_emit = new vscode.EventEmitter<vscode.TerminalDimensions>();
         this.m_terminal = <any>null;
