@@ -37,22 +37,26 @@
 		"lint": "eslint src --ext ts",
 		"test": "node ./out/test/runTest.js"
 	},
-	"dependencies":{
-		"vscode":"*"
+	"dependencies": {
+		"vscode": "*",
+		"child_process": "",
+		"highcharts": "~9.0.1"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.55.0",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"eslint": "^7.19.0",
+		"@types/vscode": "^1.55.0",
 		"@typescript-eslint/eslint-plugin": "^4.14.1",
 		"@typescript-eslint/parser": "^4.14.1",
+		"child_process": "",
+		"eslint": "^7.19.0",
 		"glob": "^7.1.6",
+		"golden-layout": "1.5.9",
+		"handsontable": "7.2.2",
+		"highcharts": "~9.0.1",
 		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
-		"vscode-test": "^1.5.0",
-		"child_process": "",
-		"highcharts": "~9.0.1"
+		"vscode-test": "^1.5.0"
 	}
 }
