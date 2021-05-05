@@ -1,65 +1,65 @@
-'use strict'
+'use strict';
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import { PathLike } from 'node:fs';
 
-export interface ttyConfig {
+export interface TtyConfig {
     exePath : string; // exe运行路径
     xArgs : Array<string>; // exe运行参数
     workDir : string; // exe运行路径
     stdinCmd : string;
 }
 
-export class persudoTty {        
-    public m_tty : Object | null; // tty允许null类型
-    public m_para : ttyConfig; // para允许null类型
-    public m_name : string;
-    public m_proc_handle : cp.ChildProcessWithoutNullStreams;
-    private m_write_emit : vscode.EventEmitter<string>;
-    private m_colse_emit : vscode.EventEmitter<vscode.TerminalDimensions>;
-    private m_terminal : vscode.Terminal;
+export class PersudoTty {        
+    public tty : Object | null; // tty允许null类型
+    public para : TtyConfig; // para允许null类型
+    public name : string;
+    public procHandle : cp.ChildProcessWithoutNullStreams;
+    private writeEmitter : vscode.EventEmitter<string>;
+    private colseEmitter : vscode.EventEmitter<vscode.TerminalDimensions>;
+    private terminal : vscode.Terminal;
 
-    constructor (name : string, para : ttyConfig) {
-        this.m_tty = null;
-        this.m_para = para;
-        this.m_name = name;
-        this.m_proc_handle = <cp.ChildProcessWithoutNullStreams>{};
-        this.m_write_emit = new vscode.EventEmitter<string>();
-        this.m_colse_emit = new vscode.EventEmitter<vscode.TerminalDimensions>();
-        this.m_terminal = <any>null;
+    constructor (name : string, para : TtyConfig) {
+        this.tty = null;
+        this.para = para;
+        this.name = name;
+        this.procHandle = <cp.ChildProcessWithoutNullStreams>{};
+        this.writeEmitter = new vscode.EventEmitter<string>();
+        this.colseEmitter = new vscode.EventEmitter<vscode.TerminalDimensions>();
+        this.terminal = <any>null;
     }
 
     public startProc() : void {
-        this.m_proc_handle = cp.spawn(this.m_para.exePath, this.m_para.xArgs, {
-            cwd : this.m_para.workDir,
+        this.procHandle = cp.spawn(this.para.exePath, this.para.xArgs, {
+            cwd : this.para.workDir,
             env : process.env,
             stdio : ['pipe','pipe', 'pipe']
         });
         const pty =  this.genTtyOption();
-        if (this.m_terminal === null || this.m_terminal.exitStatus === undefined) {
-            this.m_terminal = vscode.window.createTerminal({ name: `${this.m_name}`, pty});
+        if (this.terminal === null || this.terminal.exitStatus === undefined) {
+            this.terminal = vscode.window.createTerminal({ name: `${this.name}`, pty});
         }
-		(this.m_terminal).show();
+		(this.terminal).show();
         // stdin/out
-        this.m_proc_handle.stdout.on("data", (data : string) => {
+        this.procHandle.stdout.on("data", (data : string) => {
             console.log(data);
-            this.m_write_emit.fire(`${data}`);
+            this.writeEmitter.fire(`${data}`);
         });
-        this.m_proc_handle.stderr.on("data", (data : string) => {
+        this.procHandle.stderr.on("data", (data : string) => {
             if (`${data}`.endsWith('\n')) {
-                let show_str : string;
-                show_str = data.slice(0, data.length -1);
-                this.m_write_emit.fire(`\x1b[41m${show_str}\x1b[0m\n`);
+                let showStr : string;
+                showStr = data.slice(0, data.length -1);
+                this.writeEmitter.fire(`\x1b[41m${showStr}\x1b[0m\n`);
                 return;
             }
-            this.m_write_emit.fire(`\x1b[41m${data}\x1b[0m\n`);
+            this.writeEmitter.fire(`\x1b[41m${data}\x1b[0m\n`);
         });
-        setTimeout(() => {this.m_proc_handle.stdin._write(this.m_para.stdinCmd, 'utf-8', () => {})}, 1000);
+        setTimeout(() => {this.procHandle.stdin._write(this.para.stdinCmd, 'utf-8', () => {});}, 1000);
     }
 
     public genTtyOption() : any {
-        const writeEmitter = this.m_write_emit;
-        const closeEmitter = this.m_colse_emit;
+        const writeEmitter = this.writeEmitter;
+        const closeEmitter = this.colseEmitter;
         let line = '';
         const pty = {
                 onDidWrite: writeEmitter.event,
@@ -112,8 +112,8 @@ export class persudoTty {
 
     //
     public ttyInputProc(line : string) : void {
-        if (this.m_proc_handle != null) {
-            this.m_proc_handle.stdin._write(line+"\n", 'utf-8', () => {});
+        if (this.procHandle != null) {
+            this.procHandle.stdin._write(line+"\n", 'utf-8', () => {});
         }
         return;
     }

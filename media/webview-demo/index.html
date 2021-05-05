@@ -1,15 +1,123 @@
 <!DOCTYPE html>
 <html lang="zh">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cat Coding</title>
-    </head>
-    <body>
-        <img src="../imgs/MCS.png" width="300" />
-        <h1 id="lines-of-code-counter">0</h1> 
-        <div id='container'></div>
-        <script src="../../node_modules/highcharts/highcharts.js"></script>   
-        <script src="./demo.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebViewDemo</title>
+    <!-- jQurey -->
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Handsontable -->
+    <script src="../../node_modules/handsontable/dist/handsontable.min.js"></script>
+    <link href="../../node_modules/handsontable/dist/handsontable.full.min.css" rel="stylesheet" type="text/css" />
+    <!-- HighChart -->
+    <script src="../../node_modules/highcharts/highcharts.js"></script>
+    <link href="../../node_modules/highcharts/css/highcharts.css" rel="stylesheet" type="text/css" />
+    <!-- GoldenLayout -->
+    <script src="../../node_modules/golden-layout/dist/goldenlayout.min.js"></script>
+    <link href="../../node_modules/golden-layout/src/css/goldenlayout-base.css" rel="stylesheet" type="text/css" />
+    <link href="../../node_modules/golden-layout/src/css/goldenlayout-light-theme.css" rel="stylesheet"
+        type="text/css" />
+    <!-- USER define -->
+    <script src="./demo.js"></script>
+    <link href="./demo.css" rel="stylesheet" type="text/css">
+    </link>
+</head>
+
+<body style="padding: 0px;margin: 0px;">
+    <!-- Nav bar -->
+    <div id="nav-bar">
+        <div id="nav-logo">
+            <img src="../imgs/MCS.png" style="height: 28px;margin-inline: 8px;vertical-align: middle;"></img>
+        </div>
+        <div id="menu-bar">
+            <ul id="menu">
+                <li class="menu-item">
+                    <div>File</div>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item">Open</li>
+                        <li class="dropdown-menu-item">Close</li>
+                        <hr style="margin:0px;padding:0px;"></hr>
+                        <li class="dropdown-menu-item">Perfenerces</li>
+                    </ul>
+                </li>
+                <li class="menu-item">                    
+                    <div>Tools</div>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item">SSH</li>
+                        <li class="dropdown-menu-item">CDK</li>
+                        <hr style="margin:0px;padding:0px;"></hr>
+                        <li class="dropdown-menu-item">
+                            Setting<i style="float:right;text-align: right;">></i>
+                            <ul class="casecade-menu">
+                                <li class="casecade-item">Theme</li>
+                                <li class="casecade-item">Color</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item">                                      
+                    <div>Help</div>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu-item">About</li>
+                        <hr style="margin:0px;padding:0px;"></hr>
+                        <li class="dropdown-menu-item">User Manual</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Toolbar -->
+    <div id="tool-bar">
+        <ul id="tools">
+            <li title="Hello I'm new tools">
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+            <li>
+                <img src="../imgs/MCS.png"
+                    style="height: 20px;padding:0;margin-inline: 8px;vertical-align: middle;"></img>
+            </li>
+        </ul>
+    </div>
+    <!-- Main area -->
+    <div id="main-layout">
+        <div id="project-view"></div>
+        <div id="main-view"></div>
+    </div>
+</body>
+
+<template type="text/html">
+    <div class="chooseColor">
+        <div class="selectedColor"></div>
+        <ul>
+            <li style="background: #014FA1"></li>
+            <li style="background: #1D84BD"></li>
+            <li style="background: #EEEEEE"></li>
+            <li style="background: #F15C25"></li>
+            <li style="background: #EB0506"></li>
+        </ul>
+    </div>
+</template>
+
 </html>

@@ -1,0 +1,195 @@
+#nav-bar {
+    background:#14539c; /*导航栏配置背景色*/
+    padding : 0%;/* 将默认的内边距去掉 */
+    margin: 0;  /* 将默认的外边距去掉 */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    vertical-align: middle;/*竖直居中*/
+}
+#nav-bar div {
+    float:left; /* 往左浮动 */ 
+}
+#menu-bar ul#menu {
+    padding: 0; 
+    margin: 0; 
+}
+#menu { 
+    font:12px verdana, arial bold, sans-serif; /* 设置文字大小和字体样式 */
+    cursor: pointer;
+}
+ul#menu li.menu-item {
+    list-style:none; /* 将默认的列表符号去掉 */
+    padding: 10px;; /* 将默认的内边距去掉 */
+    margin:0; /* 将默认的外边距去掉 */   
+    float:left; /* 往左浮动 */
+    font-size: 12px;
+    font-weight: 300;
+    /* transition: 0.1s; */
+    color:#fff; /* 变换文字颜色 */
+}
+#menu li:hover{
+    background:#146C9C; /* 变换背景色 */
+    color:#fff; /* 变换文字颜色 */
+    font-weight: bold; /*变换文字大小*/
+    /* transform: translate(0, -3px); */
+}
+
+.dropdown-menu {
+    display: none;  
+    position: absolute;
+    float :none;
+    min-width: 160px;
+    padding : 0;
+    background:#fdfdfd; /*导航栏配置背景色*/
+    color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 999;
+    clear: both;
+    margin: 20px -9px;
+}
+
+.dropdown-menu li, li.dropdown-menu-item {
+    clear: both;
+    float: none;
+    color: black;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    min-width: 160px;
+    padding: 5px 5px;
+}
+
+
+#menu li:hover .dropdown-menu {
+    display: block; 
+    color: black;
+}
+
+#menu li:hover li.dropdown-menu:hover {
+    color: black;
+}
+
+.casecade-menu {
+    display: none;
+    float:none;
+    position: absolute;
+    margin : -19px 165px;
+    background:#fdfdfd; /*导航栏配置背景色*/
+    padding : 0;
+    text-decoration: none;
+    font-weight: 300;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.casecade-item {
+    padding: 0;
+    margin: 0;
+}
+
+li.dropdown-menu-item:hover ul.casecade-menu {
+    display : block;
+}
+
+#tool-bar {    
+    /* background: repeating-linear-gradient( 45deg,
+    transparent,
+    transparent 1px,
+    rgb(168, 139, 10) 1px,
+    rgba(255,255,255,1) 2px); */
+    overflow-y:  auto;/*自动包住整个子模块*/ 
+    border-top:olive 3px double;
+    padding: 2px;
+    height: auto;
+}
+#tool-bar ul {
+    padding: 0; 
+    margin: 0; 
+    justify-content: left;
+    align-items: center;
+    vertical-align: middle;/*竖直居中*/
+    height: 100%; 
+}
+#tools li {
+    padding: 1px;
+    margin:0; /* 将默认的外边距去掉 */
+    float:left; /* 往左浮动 */  
+    list-style:none; /* 将默认的列表符号去掉 */
+    font-size : 12px;
+    height: 100%;
+}
+#tools img:hover {
+    /* background: silver; */
+    color:#fff; /* 变换文字颜色 */
+    font-weight: bold; /*变换文字大小*/
+    filter: brightness(1.5);
+    /* box-shadow: 3px 3px 3px 2px rgba(192, 9, 9, 0.1); */
+    /* transform: translateY(-3px); */
+}
+
+/* Gloden Layout CSS */
+.lm_splitter.lm_vertical{
+    opacity: 1;
+    transition: opacity 200ms ease;
+    background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#383838));
+    background: -webkit-linear-gradient(top, #505050, #383838);
+    background: linear-gradient(to bottom, #505050, #383838);
+    border-top: 1px solid black;
+    border-bottom: 0px solid black;
+    -webkit-box-shadow: inset 0 1px 0 #6e6e6e,0 2px 2px rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 0 #6e6e6e,0 1px 1px rgba(0,0,0,0.4);
+}
+.lm_splitter.lm_horizontal{
+    opacity: 1;
+    transition: opacity 200ms ease;
+    background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#383838));
+    background: -webkit-linear-gradient(top, #505050, #383838);
+    background: linear-gradient(to bottom, #505050, #383838);
+    border-top: 1px solid black;
+    border-bottom: 0px solid black;
+    -webkit-box-shadow: inset 0 1px 0 #6e6e6e,0 2px 2px rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 0 #6e6e6e,0 1px 1px rgba(0,0,0,0.4);
+}
+
+.chooseColor{
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    float: left;
+    margin: 5px 5px 0 0;
+    cursor: pointer;
+  }
+  
+  .chooseColor .selectedColor{
+    width: 10px;
+    height: 10px;
+  }
+  
+  .chooseColor ul{
+    display: none;
+    box-shadow: 2px 2px 3px rgba( 0, 0, 0, 0.7 );
+  }
+  
+  .chooseColor:hover ul{
+    display: block;
+  }
+  
+  .chooseColor ul,
+  .chooseColor ul li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .chooseColor ul li{
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+  }
+  
+  .chooseColor ul li:hover{
+    border: 1px solid orange;
+    width: 8px;
+    height: 8px;
+  };
+

@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import {persudoTty, ttyConfig} from './subprocess/persudoTty';
-import {topView} from './view-engine/top-view';
+import {PersudoTty, TtyConfig} from './subprocess/persudoTty';
+import {TopView} from './view-engine/top-view';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
-const ttyCfg : ttyConfig = {
+const ttyCfg : TtyConfig = {
 	exePath : `D:\\TCL\\bin\\tclsh86t.exe`,
 	xArgs : [],
 	workDir : ".",
@@ -31,16 +31,16 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 
 	let startChildProcess = vscode.commands.registerCommand('webview-demo.startChildProcess', () => {
-		const extensionTty : persudoTty = new persudoTty("demo", ttyCfg);
+		const extensionTty : PersudoTty = new PersudoTty("demo", ttyCfg);
 		extensionTty.startProc();
 		vscode.window.showInformationMessage('Start child process successfully!');
-	})
+	});
 	context.subscriptions.push(startChildProcess);
 
 	let startWebView = vscode.commands.registerCommand('webview-demo.startWebview', () => {
-		const view_demo : topView = new topView(context);
-		view_demo.createMainView();
-	})
+		const viewDemo : TopView = new TopView(context);
+		viewDemo.createMainView();
+	});
 	context.subscriptions.push(startWebView);
 }
 

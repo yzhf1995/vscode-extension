@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>>
+        <title></title>
+        <script>
+            var str = {
+                "爱立信$$BBU$$DUS4102": "KDU137624/11$$",
+				"华为$$RRU$$RRU3959$$WD5MIRUYC10E": "基带板$$",
+				"factory": "华为$$爱立信$$",
+				"华为": "BBU$$RRU$$",
+				"爱立信$$BBU$$DUS4102$$KDU137624/11": "基带板$$",
+				"华为$$BBU": "UMPTb2$$",
+				"华为$$RRU": "RRU3775$$RRU3959$$",
+                "华为$$RRU$$RRU3959": "WD5MIRUYC10E$$",
+				"华为$$BBU$$UMPTb2": "WD22UMPTb2$$",
+                "华为$$RRU$$RRU3775$$D5MPRUC19BC": "电源模块$$",
+                "result": "ok",
+                "华为$$BBU$$UMPTb2$$WD22UMPTb2": "射频单元$$",
+                "华为$$RRU$$RRU3775": "D5MPRUC19BC$$",
+				"爱立信$$BBU": "DUS4102$$",
+				"爱立信$$RRU": "RRUS01B1$$",
+				"爱立信$$RRU$$RRUS01B1": "KRC161255/2$$",
+                "爱立信$$RRU$$RRUS01B1$$KRC161255/2": "电源模块$$",
+                "爱立信": "BBU$$RRU$$"
+            };
+            function getLevel() {
+                $("#level1 option[value='请选择']").remove();
+                $("#level1 option[value='']").remove();
+                $("#level2 option[value='']").remove();
+                $("#level3 option[value='']").remove();
+                $("#level4 option[value='']").remove();
+                $("#level5 option[value='']").remove();
+                var checkText = $("#level1").find("option:selected").text();
+                $("#level2").empty();
+                var type = str[checkText].split("$$");
+                for(var i = 0; i < type.length; i++) {
+                    $("#level2").append("<option value='" + type[i] + "'>" + type[i]);
+                }
+                changeLevel_2();
+            }
+            function changeLevel_2() {
+                var checkText = $("#level1").find("option:selected").text();
+                var checkText2 = $("#level2").find("option:selected").text();
+                $("#level3").empty();
+
+                var products_name = str[checkText + "$$" + checkText2].split("$$");
+                for(var i = 0; i < products_name.length; i++) {
+                    $("#level3").append("<option value='" + products_name[i] + "'>" + products_name[i]);
+                }
+                changeLevel_3();
+            }
+            function changeLevel_3() {
+                var checkText = $("#level1").find("option:selected").text();
+                var checkText2 = $("#level2").find("option:selected").text();
+                var checkText3 = $("#level3").find("option:selected").text();
+                $("#level4").empty();
+
+                var products_no = str[checkText + "$$" + checkText2 + "$$" + checkText3].split("$$");
+                for(var i = 0; i < products_no.length; i++) {
+                    $("#level4").append("<option value='" + products_no[i] + "'>" + products_no[i]);
+                }
+                changeLevel_4();
+            }
+
+            function changeLevel_4() {
+                var checkText = $("#level1").find("option:selected").text();
+                var checkText2 = $("#level2").find("option:selected").text();
+                var checkText3 = $("#level3").find("option:selected").text();
+                var checkText4 = $("#level4").find("option:selected").text();
+                $("#level5").empty();
+                var function_1 = str[checkText + "$$" + checkText2 + "$$" + checkText3].split("$$");
+                for(var i = 0; i < function_1.length; i++) {
+                    $("#level5").append("<option value='" + function_1[i] + "'>" + function_1[i]);
+                }
+                $("#level2 option[value='']").remove();
+                $("#level3 option[value='']").remove();
+                $("#level4 option[value='']").remove();
+                $("#level5 option[value='']").remove();
+            }
+        </script>
+    </head>
+    <body>
+        <strong><span style="font-size:18px;">              
+                    <tr>  
+                    <td>类别</td>  
+                    <td>  
+                        <select name="level1" id="level1" onchange="getLevel()" style="width:100px;">  
+
+
+                        </select>  
+                        <select name="level2" id="level2" onchange="changeLevel_2()" style="width:100px;">
+                             <option value="all" selected>请选择 
+                        </select>  
+                        <select name="level3" id="level3" onchange="changeLevel_3()" style="width:100px;">
+                             <option value="all" selected>请选择
+                        </select> 
+                        <select name="level4" id="level4" onchange="changeLevel_4()" style="width:100px;">
+                             <option value="all" selected>请选择  
+                        </select>
+                         <select name="level5" id="level5"  style="width:100px;"> 
+                             <option value="all" selected>请选择
+                        </select>
+                    </td>  
+                  </tr></span></strong>
+
+    </body>
+    <script>
+        $("#level1").empty();
+
+        $("#level1").append("<option value='请选择'>请选择");
+
+        var factory = str.factory.split("$$");
+        for(var i = 0; i < factory.length; i++) {
+            $("#level1").append("<option value='" + factory[i] + "'>" + factory[i]);
+        }
+        $("#level1 option[value='']").remove();
+    </script>
+</html>
