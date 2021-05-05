@@ -189,7 +189,7 @@ $().ready( () => {
         };
       });
 
-
+    var seriesChart = null;
     StockChartComponent = function( container, state ) {
         this._highChartsConfig = {
             title: { text: 'My First chart' },
@@ -214,15 +214,15 @@ $().ready( () => {
         this._container = container;
         this._state = state;
         this._chart = null;
-    
+        seriesChart = this._chart;
         this._container.setTitle( 'First Chart' );
         this._container.on( 'open', this._createChart.bind( this ) );
     };
+
     
     StockChartComponent.prototype._createChart = function() {
         this._chart = new Highcharts.Chart( this._highChartsConfig );
-    
-        this._chart.hideLoading();
+        seriesChart = this._chart;
         this._bindContainerEvents();
     };
     
@@ -243,7 +243,33 @@ $().ready( () => {
         this._chart.setSize( this._container.width, this._container.height );
     };
 
+    StockChartComponent.prototype._getChart = function() {
+        return this._chart;
+    };
+
     layout.registerComponent( 'stock-chart', StockChartComponent);   
 
     layout.init();
+
+    function changeSeries() {
+        var chart = seriesChart;
+        if (!chart)
+        {
+            console.log("Unexpected Error");
+            setTimeout(changeSeries, 1000);
+        }
+        var chartOption = {series:[
+            {                              // 数据列
+                name: '小明',                        // 数据列名
+                data: [1, 0, 4]                     // 数据
+            }, {
+                name: '小红',
+                data: [Math.random()*10, 7, 3]
+            }
+        ]};
+        chart.update(chartOption, true);
+        setTimeout(changeSeries, 1000);
+    }
+    
+    setTimeout(changeSeries, 1000);
 });
